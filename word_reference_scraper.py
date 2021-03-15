@@ -13,7 +13,7 @@ wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?'
+    url = 'https://www.wordreference.com/es/translation.asp?tranword=address'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -22,11 +22,11 @@ def word_scrape():
 
     counter = 0
     end = 'start'
-    # session = requests.Session()
+    session = requests.Session()
     start = time.time()
     while url:
-        r = clientAPI.get(url)
-        # r = session.get(url)
+        # r = clientAPI.get(url)
+        r = session.get(url)
         soup = BeautifulSoup(r.text ,"html.parser")
         links = soup.find('li', id='link').find_all('a')
         #if the url is the last then stop the while loop
@@ -50,8 +50,8 @@ def word_scrape():
                     url = 'https://www.wordreference.com' + link.get('href')
                     done = 'no'
 
-                    r = clientAPI.get(url)
-                    # r = session.get(url)
+                    # r = clientAPI.get(url)
+                    r = session.get(url)
                     soup = BeautifulSoup(r.text ,"html.parser")
                     main = soup.find('div', class_='hw-flex-container')
                     principal_trans = False
