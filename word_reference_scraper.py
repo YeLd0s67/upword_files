@@ -20,7 +20,7 @@ wks = sheet.worksheet_by_title('Лист1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?'
+    url = 'https://www.wordreference.com/es/translation.asp?tranword=address'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -39,7 +39,7 @@ def word_scrape():
         #if the url is the last then stop the while loop
         if(end=='end'):
             break
-        elif(counter >= 1000):
+        elif(counter >= 20):
             break
         #else proceed
         else:
@@ -833,7 +833,7 @@ def word_scrape():
                     print('DONE')
                     try:
                         df = pd.DataFrame(dic)
-                        i = wks.rows+1 
+                        i = wks.rows+2 
                         print(i)
                         print(df)
                         wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
