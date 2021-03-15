@@ -68,7 +68,7 @@ def word_scrape():
                                         for ingle in ingles:
                                             for word in ingle.findAll("strong"):
                                                     text = word.text
-                                                    dic["Word"].append(text)
+                                                    dic["Word"].append(text.replace("⇒", ""))
                                 if(additional_trans == False):
                                     if(translation.find('span', class_='ph').text == 'Additional Translations'):
                                         additional_trans = True
@@ -77,7 +77,7 @@ def word_scrape():
                                             for word in ingle.findAll("strong"):
                                                 # if word not in dic["Word"]:
                                                     text = word.text
-                                                    dic["Word"].append(text)
+                                                    dic["Word"].append(text.replace("⇒", ""))
                             except:
                                 print("An exception occurred")
                     print('DONE')
