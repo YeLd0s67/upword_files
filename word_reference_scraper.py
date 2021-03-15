@@ -7,20 +7,13 @@ import pygsheets
 from google.oauth2 import service_account
 
 clientAPI = ScraperAPIClient('e8a3b272e459a3e3721168939db31f8b')
-SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly', 
-            'https://www.googleapis.com/auth/drive',
-            'https://www.googleapis.com/auth/drive.file',
-            'https://www.googleapis.com/auth/spreadsheets']
-creds = None
-
 client = pygsheets.authorize(client_secret='client_secret.json')
-sheet = client.open_by_key('178NvxT9wFQ9Bx-2uwsxsuwRQ45hr-hfZqTBWjXycSSA')
-wks = sheet.worksheet_by_title('Лист1')
-# print(wks)
+sheet = client.open_by_key('1ZZ0iGjiFC2jqFMHBzlfGGxGJzIBXiW6p4mcSI1qHbF4')
+wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?tranword=address'
+    url = 'https://www.wordreference.com/es/translation.asp?'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -39,7 +32,7 @@ def word_scrape():
         #if the url is the last then stop the while loop
         if(end=='end'):
             break
-        elif(counter >= 20):
+        elif(counter >= 10000):
             break
         #else proceed
         else:
@@ -105,7 +98,7 @@ def word_scrape():
                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                         # print('first '+first)
                                                                         # print('sec '+second)
-                                                                        new = new + first + ': ' + second + '\ \n' 
+                                                                        new = new + first + ': ' + second + '; \n' 
                                                                         one_inflection = True 
                                                                 except:
                                                                     print("An exception occurred 2")
@@ -118,12 +111,12 @@ def word_scrape():
                                                                                 for span in i.find_all('span', class_='tooltip POS2'):
                                                                                     infs = infs + span.contents[0] + " "
                                                                                 li = infs.split(' ')
-                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'\ \n'
+                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'; \n'
                                                                                 two_inflections = True                   
                                                                             else:
                                                                                 first =  i.find('dt', class_='ListInfl').text
                                                                                 second = i.find('span', class_='POS2').contents[0].contents[0]
-                                                                                new3 = new3 + first + ': ' + second + '\ \n'                                                                        
+                                                                                new3 = new3 + first + ': ' + second + '; \n'                                                                        
                                                                     except:
                                                                         print("An exception occurred 2")
                                                             if(one_inflection==True):
@@ -317,7 +310,7 @@ def word_scrape():
                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                         # print('first '+first)
                                                                         # print('sec '+second)
-                                                                        new = new + first + ': ' + second + '\ \n' 
+                                                                        new = new + first + ': ' + second + '; \n' 
                                                                         one_inflection = True 
                                                                 except:
                                                                     print("An exception occurred 2")
@@ -330,12 +323,12 @@ def word_scrape():
                                                                                 for span in i.find_all('span', class_='tooltip POS2'):
                                                                                     infs = infs + span.contents[0] + " "
                                                                                 li = infs.split(' ')
-                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'\ \n'
+                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'; \n'
                                                                                 two_inflections = True                   
                                                                             else:
                                                                                 first =  i.find('dt', class_='ListInfl').text
                                                                                 second = i.find('span', class_='POS2').contents[0].contents[0]
-                                                                                new3 = new3 + first + ': ' + second + '\ \n'                                                                        
+                                                                                new3 = new3 + first + ': ' + second + '; \n'                                                                        
                                                                     except:
                                                                         print("An exception occurred 2")
 
@@ -490,7 +483,7 @@ def word_scrape():
                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                         # print('first '+first)
                                                                         # print('sec '+second)
-                                                                        new = new + first + ': ' + second + '\ \n' 
+                                                                        new = new + first + ': ' + second + '; \n' 
                                                                         one_inflection = True 
                                                                 except:
                                                                     print("An exception occurred 2")
@@ -503,12 +496,12 @@ def word_scrape():
                                                                                 for span in i.find_all('span', class_='tooltip POS2'):
                                                                                     infs = infs + span.contents[0] + " "
                                                                                 li = infs.split(' ')
-                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'\ \n'
+                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'; \n'
                                                                                 two_inflections = True                   
                                                                             else:
                                                                                 first =  i.find('dt', class_='ListInfl').text
                                                                                 second = i.find('span', class_='POS2').contents[0].contents[0]
-                                                                                new3 = new3 + first + ': ' + second + '\ \n'                                                                        
+                                                                                new3 = new3 + first + ': ' + second + '; \n'                                                                        
                                                                     except:
                                                                         print("An exception occurred 2")
                                                             if(one_inflection==True):
@@ -702,7 +695,7 @@ def word_scrape():
                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                         # print('first '+first)
                                                                         # print('sec '+second)
-                                                                        new = new + first + ': ' + second + '\ \n' 
+                                                                        new = new + first + ': ' + second + '; \n' 
                                                                         one_inflection = True 
                                                                 except:
                                                                     print("An exception occurred 2")
@@ -715,12 +708,12 @@ def word_scrape():
                                                                                 for span in i.find_all('span', class_='tooltip POS2'):
                                                                                     infs = infs + span.contents[0] + " "
                                                                                 li = infs.split(' ')
-                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'\ \n'
+                                                                                new2 = new2 +'('+li[0]+'): '+ li[1]+i.contents[-2]+'; \n'
                                                                                 two_inflections = True                   
                                                                             else:
                                                                                 first =  i.find('dt', class_='ListInfl').text
                                                                                 second = i.find('span', class_='POS2').contents[0].contents[0]
-                                                                                new3 = new3 + first + ': ' + second + '\ \n'                                                                        
+                                                                                new3 = new3 + first + ': ' + second + '; \n'                                                                        
                                                                     except:
                                                                         print("An exception occurred 2")
 
@@ -833,7 +826,7 @@ def word_scrape():
                     print('DONE')
                     try:
                         df = pd.DataFrame(dic)
-                        i = wks.rows+2 
+                        i = wks.rows+1 
                         print(i)
                         print(df)
                         wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
