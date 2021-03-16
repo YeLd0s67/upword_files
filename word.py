@@ -96,7 +96,7 @@ def word_scrape():
                                                                     for i in div_infs.find_all('dl'):
                                                                         if(i.find('dt', class_='ListInfl') is None):
                                                                             first = text
-                                                                            second = i.find('span', class_='tooltip POS2').contents[0].contents[0]
+                                                                            second = i.find('span', class_='tooltip POS2').contents[0]
                                                                             # print('first '+first)
                                                                             # print('sec '+second)
                                                                             new = new + first + ': ' + second + '; \n'
@@ -487,10 +487,12 @@ def word_scrape():
                                                                     for i in div_infs.find_all('dl'):
                                                                         if(i.find('dt', class_='ListInfl') is None):
                                                                             first = text
-                                                                            second = i.find('span', class_='tooltip POS2').contents[0].contents[0]
+                                                                            second = i.find_all('span', class_='tooltip POS2')
+                                                                            sec1 = second[0].contents[0].contents[0]
+                                                                            sec2 = second[1].contents[0].contents[0]
                                                                             # print('first '+first)
                                                                             # print('sec '+second)
-                                                                            new = new + first + ': ' + second + '; \n'
+                                                                            new = new + first + ': ' + sec1 + ', '+ sec2 +'; \n'
                                                                         else:    
                                                                             first =  i.find('dt', class_='ListInfl').text
                                                                             second = i.find('span', class_='POS2').contents[0].contents[0]
