@@ -13,7 +13,7 @@ wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?tranword=acknowledgements'
+    url = 'https://www.wordreference.com/es/translation.asp?tranword=activate'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -24,8 +24,8 @@ def word_scrape():
     end = 'start'
     # session = requests.Session()
     start = time.time()
-    try:
-        while url:
+    while url:
+        try:
             r = clientAPI.get(url)
             # r = session.get(url)
             soup = BeautifulSoup(r.text ,"html.parser")
@@ -869,8 +869,8 @@ def word_scrape():
                             wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                         # except:
                         #     print("Good job")
+        except:
+            print('No Contents')
         end = time.time()
         print("Time Taken: {:.6f}s".format(end-start))
-    except:
-        print('No Contents')
 word_scrape()
