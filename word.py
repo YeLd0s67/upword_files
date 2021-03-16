@@ -871,6 +871,6 @@ def word_scrape():
                         #     print("Good job")
         except:
             print('No Contents')
-        end = time.time()
-        print("Time Taken: {:.6f}s".format(end-start))
+    endd = time.time()
+    print("Time Taken: {:.6f}s".format(endd-start))
 word_scrape()
