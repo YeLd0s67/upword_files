@@ -8,7 +8,7 @@ from google.oauth2 import service_account
 
 clientAPI = ScraperAPIClient('e8a3b272e459a3e3721168939db31f8b')
 client = pygsheets.authorize(client_secret='client_secret.json')
-sheet = client.open_by_key('178NvxT9wFQ9Bx-2uwsxsuwRQ45hr-hfZqTBWjXycSSA')
+sheet = client.open_by_key('1ZZ0iGjiFC2jqFMHBzlfGGxGJzIBXiW6p4mcSI1qHbF4')
 wks = sheet.worksheet_by_title('Sheet1')
 
 
@@ -22,12 +22,12 @@ def word_scrape():
 
     counter = 0
     end = 'start'
-    session = requests.Session()
+    # session = requests.Session()
     start = time.time()
     try:
         while url:
-            # r = clientAPI.get(url)
-            r = session.get(url)
+            r = clientAPI.get(url)
+            # r = session.get(url)
             soup = BeautifulSoup(r.text ,"html.parser")
             links = soup.find('li', id='link').find_all('a')
             #if the url is the last then stop the while loop
@@ -51,8 +51,8 @@ def word_scrape():
                         url = 'https://www.wordreference.com' + link.get('href')
                         done = 'no'
 
-                        # r = clientAPI.get(url)
-                        r = session.get(url)
+                        r = clientAPI.get(url)
+                        # r = session.get(url)
                         soup = BeautifulSoup(r.text ,"html.parser")
                         main = soup.find('div', class_='hw-flex-container')
                         principal_trans = False
