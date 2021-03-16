@@ -441,7 +441,6 @@ def word_scrape():
                         try:
                             df = pd.DataFrame(dic) 
                             i = wks.rows+1
-                            print(i)
                             wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                         except:
                             print("Missed a word")
@@ -827,11 +826,9 @@ def word_scrape():
                     try:
                         df = pd.DataFrame(dic)
                         i = wks.rows+1 
-                        print(i)
-                        print(df)
                         wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                     except:
-                        print("Good job")
+                        print("Missed a word")
     end = time.time()
     print("Time Taken: {:.6f}s".format(end-start))
 
