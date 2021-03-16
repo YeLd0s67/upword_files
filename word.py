@@ -825,8 +825,11 @@ def word_scrape():
                     print('DONE')
                     # try:
                     df = pd.DataFrame(dic)
-                    i = wks.rows+1 
-                    wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
+                    i = wks.rows+1
+                    if(df.empty):
+                        continue
+                    else:
+                        wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                     # except:
                     #     print("Good job")
     end = time.time()
