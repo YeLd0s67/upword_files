@@ -480,7 +480,7 @@ def word_scrape():
                                                                     for i in div_infs.find_all('dl'):
                                                                         if(i.find('dt', class_='ListInfl') is None):
                                                                             first = text
-                                                                            second = i.find('span', class_='tooltip POS2').contents[0]
+                                                                            second = i.find('span', class_='tooltip POS2').contents[0].contents[0]
                                                                             # print('first '+first)
                                                                             # print('sec '+second)
                                                                             new = new + first + ': ' + second + '; \n'
