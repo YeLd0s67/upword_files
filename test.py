@@ -68,7 +68,7 @@ def word_scrape():
                                         for ingle in ingles:
                                             for word in ingle.findAll("strong"):
                                                     text = word.text
-                                                    dic["Word"].append(text.replace("⇒", ""))
+                                                    dic["Word"].append(text)
                                 if(additional_trans == False):
                                     if(translation.find('span', class_='ph').text == 'Additional Translations'):
                                         additional_trans = True
@@ -77,18 +77,18 @@ def word_scrape():
                                             for word in ingle.findAll("strong"):
                                                 # if word not in dic["Word"]:
                                                     text = word.text
-                                                    dic["Word"].append(text.replace("⇒", ""))
+                                                    dic["Word"].append(text)
                             except:
                                 print("An exception occurred")
                     print('DONE')
-                    try:
-                        df = pd.DataFrame(dic)
-                        i = wks.rows+1 
-                        print(i)
-                        print(df)
-                        wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
-                    except:
-                        print("Good job")
+                    # try:
+                    df = pd.DataFrame(dic)
+                    i = wks.rows+1 
+                    print(i)
+                    print(df)
+                    wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
+                    # except:
+                    #     print("Good job")
     end = time.time()
     print("Time Taken: {:.6f}s".format(end-start))
 
