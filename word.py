@@ -823,12 +823,12 @@ def word_scrape():
                             except:
                                 print("An exception occurred")
                     print('DONE')
-                    try:
-                        df = pd.DataFrame(dic)
-                        i = wks.rows+1 
-                        wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
-                    except:
-                        print("Missed a word")
+                    # try:
+                    df = pd.DataFrame(dic)
+                    i = wks.rows+1 
+                    wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
+                    # except:
+                    #     print("Good job")
     end = time.time()
     print("Time Taken: {:.6f}s".format(end-start))
 
