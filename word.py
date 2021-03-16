@@ -478,11 +478,18 @@ def word_scrape():
                                                             if(len(div_infs.find_all('div'))<2):
                                                                 # try:    
                                                                     for i in div_infs.find_all('dl'):
-                                                                        first =  i.find('dt', class_='ListInfl').text
-                                                                        second = i.find('span', class_='POS2').contents[0].contents[0]
-                                                                        # print('first '+first)
-                                                                        # print('sec '+second)
-                                                                        new = new + first + ': ' + second + '; \n' 
+                                                                        if(i.find('dt', class_='ListInfl') is None):
+                                                                            first = text
+                                                                            second = i.find('span', class_='tooltip POS2').contents[0]
+                                                                            # print('first '+first)
+                                                                            # print('sec '+second)
+                                                                            new = new + first + ': ' + second + '; \n'
+                                                                        else:    
+                                                                            first =  i.find('dt', class_='ListInfl').text
+                                                                            second = i.find('span', class_='POS2').contents[0].contents[0]
+                                                                            # print('first '+first)
+                                                                            # print('sec '+second)
+                                                                            new = new + first + ': ' + second + '; \n' 
                                                                         one_inflection = True 
                                                                 # except:
                                                                 #     print("An exception occurred 2")
