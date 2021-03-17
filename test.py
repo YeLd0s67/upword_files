@@ -25,7 +25,7 @@ def word_scrape():
     # session = requests.Session()
     start = time.time()
     while url:
-        # try:
+        try:
             r = clientAPI.get(url)
             # r = session.get(url)
             soup = BeautifulSoup(r.text ,"html.parser")
@@ -466,7 +466,7 @@ def word_scrape():
                         #else proceed
                         else:
                             for translation in all_translation:
-                                try:
+                                # try:
                                     if(principal_trans == False):
                                         if(translation.find('span', class_='ph') is not None):
                                             if(translation.find('span', class_='ph').text == 'Principal Translations'):
@@ -495,7 +495,7 @@ def word_scrape():
                                                                     div_infs = main.find('div', class_='inflectionsSection')
                                                                     # print(len(div_infs.find_all('div')))
                                                                     if(len(div_infs.find_all('div'))<2):
-                                                                        try:    
+                                                                        # try:    
                                                                             for i in div_infs.find_all('dl'):
                                                                                 if(i.find('dt', class_='ListInfl') is None):
                                                                                     first = text
@@ -518,11 +518,11 @@ def word_scrape():
                                                                                     # print('sec '+second)
                                                                                     new = new + first + ': ' + second + '; \n' 
                                                                                 one_inflection = True 
-                                                                        except:
-                                                                            print("An exception occurred 2")
+                                                                        # except:
+                                                                        #     print("An exception occurred 2")
                                                                     else:
                                                                         for divs in div_infs.find_all('div'):
-                                                                            try:
+                                                                            # try:
                                                                                 for i in divs.find_all('dl'):
                                                                                     if(i.find('dt', class_='ListInfl') is None):
                                                                                         infs = ""
@@ -535,8 +535,8 @@ def word_scrape():
                                                                                         first =  i.find('dt', class_='ListInfl').text
                                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                                         new3 = new3 + first + ': ' + second + '; \n'                                                                        
-                                                                            except:
-                                                                                print("An exception occurred 2")
+                                                                            # except:
+                                                                            #     print("An exception occurred 2")
                                                                     if(one_inflection==True):
                                                                         dic["Word"].append(end_word)
                                                                         dic["Meaning"].append("null")
@@ -696,12 +696,6 @@ def word_scrape():
                                                             else:
                                                                 word_type = word.find_next('em').find_next('span').contents[0].text 
 
-                                                            # list_word_type = list(word_type.split(", "))
-                                                            # list_word = list(list_word_type[0].split(" "))
-                                                            # length = len(list_word_type)
-                                                            # print(text)
-                                                            # print('word_type '+word_type)
-
                                                             some = word.parent.parent.find_next('tr')
                                                             some2 = some.find_next('tr')
                                                             some3 = some2.find_next('tr')
@@ -724,7 +718,7 @@ def word_scrape():
                                                                     div_infs = main.find('div', class_='inflectionsSection')
                                                                     # print(len(div_infs.find_all('div')))
                                                                     if(len(div_infs.find_all('div'))<2):
-                                                                        try:    
+                                                                        # try:    
                                                                             for i in div_infs.find_all('dl'):
                                                                                 first =  i.find('dt', class_='ListInfl').text
                                                                                 second = i.find('span', class_='POS2').contents[0].contents[0]
@@ -732,11 +726,11 @@ def word_scrape():
                                                                                 # print('sec '+second)
                                                                                 new = new + first + ': ' + second + '; \n' 
                                                                                 one_inflection = True 
-                                                                        except:
-                                                                            print("An exception occurred 2")
+                                                                        # except:
+                                                                        #     print("An exception occurred 2")
                                                                     else:
                                                                         for divs in div_infs.find_all('div'):
-                                                                            try:
+                                                                            # try:
                                                                                 for i in divs.find_all('dl'):
                                                                                     if(i.find('dt', class_='ListInfl') is None):
                                                                                         infs = ""
@@ -749,8 +743,8 @@ def word_scrape():
                                                                                         first =  i.find('dt', class_='ListInfl').text
                                                                                         second = i.find('span', class_='POS2').contents[0].contents[0]
                                                                                         new3 = new3 + first + ': ' + second + '; \n'                                                                        
-                                                                            except:
-                                                                                print("An exception occurred 2")
+                                                                            # except:
+                                                                            #     print("An exception occurred 2")
 
                                                                     if(new==""):
                                                                         new = "null"
@@ -857,8 +851,8 @@ def word_scrape():
                                                                     dic["Type"].append("null")
                                         else:
                                             continue
-                                except:
-                                    print("An exception occurred")
+                                # except:
+                                #     print("An exception occurred")
                         print('DONE')
                         # try:
                         df = pd.DataFrame(dic)
@@ -869,8 +863,8 @@ def word_scrape():
                             wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                         # except:
                         #     print("Good job")
-        # except:
-        #     print('No Contents')
+        except:
+            print('No Contents')
     endd = time.time()
     print("Time Taken: {:.6f}s".format(endd-start))
 word_scrape()
