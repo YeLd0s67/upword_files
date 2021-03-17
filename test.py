@@ -26,7 +26,7 @@ def word_scrape():
     start = time.time()
     while url:
         try:
-            r = clientAPI.get(url)
+            r = clientAPI.get(url, session_number=123)
             # r = session.get(url)
             soup = BeautifulSoup(r.text ,"html.parser")
             links = soup.find('li', id='link').find_all('a')
@@ -51,7 +51,7 @@ def word_scrape():
                         url = 'https://www.wordreference.com' + link.get('href')
                         done = 'no'
 
-                        r = clientAPI.get(url)
+                        r = clientAPI.get(url, session_number=123)
                         # r = session.get(url)
                         soup = BeautifulSoup(r.text ,"html.parser")
                         main = soup.find('div', class_='hw-flex-container')
