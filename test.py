@@ -13,7 +13,7 @@ wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?tranword=activate'
+    url = 'https://www.wordreference.com/es/translation.asp?tranword=actionable'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -26,12 +26,11 @@ def word_scrape():
     start = time.time()
     while url:
         # try:
-        r = clientAPI.get(url)
-        # r = session.get(url)
-        soup = BeautifulSoup(r.text ,"html.parser")
-        links = soup.find('li', id='link').find_all('a')
-        #if the url is the last then stop the while loop
-        try:    
+            r = clientAPI.get(url)
+            # r = session.get(url)
+            soup = BeautifulSoup(r.text ,"html.parser")
+            links = soup.find('li', id='link').find_all('a')
+            #if the url is the last then stop the while loop
             if(end=='end'):
                 break
             elif(counter >= 100000):
@@ -870,9 +869,8 @@ def word_scrape():
                             wks.set_dataframe(df, start=(i,1), extend=True, copy_head=False)
                         # except:
                         #     print("Good job")
-        except:
-            print('No Contents')
-            continue
+        # except:
+        #     print('No Contents')
     endd = time.time()
     print("Time Taken: {:.6f}s".format(endd-start))
 word_scrape()
