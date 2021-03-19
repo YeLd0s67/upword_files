@@ -8,7 +8,7 @@ from google.oauth2 import service_account
 
 clientAPI = ScraperAPIClient('e8a3b272e459a3e3721168939db31f8b')
 client = pygsheets.authorize(client_secret='client_secret.json')
-sheet = client.open_by_key('178NvxT9wFQ9Bx-2uwsxsuwRQ45hr-hfZqTBWjXycSSA')
+sheet = client.open_by_key('1ZZ0iGjiFC2jqFMHBzlfGGxGJzIBXiW6p4mcSI1qHbF4')
 wks = sheet.worksheet_by_title('Sheet1')
 
 
