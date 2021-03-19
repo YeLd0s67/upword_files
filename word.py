@@ -104,7 +104,7 @@ def word_scrape():
                                                                                     second = i.find_all('dd')
                                                                                     if(len(second)<2):
                                                                                         sec1 = second[0].contents[0].contents[0]
-                                                                                        new = new + first + ': ' + sec1 + '; \n'
+                                                                                        new = new + end_word + ': ' + sec1 + '; \n'
                                                                                     elif(len(second)>1):
                                                                                         sec = ''
                                                                                         for c in range(len(second)):
@@ -506,7 +506,7 @@ def word_scrape():
                                                                                         second = i.find_all('dd')
                                                                                         if(len(second)<2):
                                                                                             sec1 = second[0].contents[0].contents[0]
-                                                                                            new = new + first + ': ' + sec1 + '; \n'
+                                                                                            new = new + end_word + ': ' + sec1 + '; \n'
                                                                                         elif(len(second)>1):
                                                                                             sec = ''
                                                                                             for c in range(len(second)):
