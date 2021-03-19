@@ -8,12 +8,12 @@ from google.oauth2 import service_account
 
 clientAPI = ScraperAPIClient('e8a3b272e459a3e3721168939db31f8b')
 client = pygsheets.authorize(client_secret='client_secret.json')
-sheet = client.open_by_key('1ZZ0iGjiFC2jqFMHBzlfGGxGJzIBXiW6p4mcSI1qHbF4')
+sheet = client.open_by_key('178NvxT9wFQ9Bx-2uwsxsuwRQ45hr-hfZqTBWjXycSSA')
 wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?tranword=activate'
+    url = 'https://www.wordreference.com/es/translation.asp?tranword=councilperson'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
@@ -33,7 +33,7 @@ def word_scrape():
             #if the url is the last then stop the while loop
             if(end=='end'):
                 break
-            elif(counter >= 100000):
+            elif(counter >= 10):
                 break
             #else proceed
             else:
@@ -48,7 +48,10 @@ def word_scrape():
                         "Speach":[], "Type":[], "Transitive/Intransitive":[], 
                         "Separable/Inseparable":[], "Inflections":[]
                         }
-                        url = 'https://www.wordreference.com' + link.get('href')
+                        check_url = link.get('href').count('%')
+
+                        if(check_url < 3): 
+                            url = 'https://www.wordreference.com' + link.get('href')
                         done = 'no'
 
                         r = clientAPI.get(url)
