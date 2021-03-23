@@ -13,7 +13,7 @@ wks = sheet.worksheet_by_title('Sheet1')
 
 
 def word_scrape():
-    url = 'https://www.wordreference.com/es/translation.asp?tranword=councilperson'
+    url = 'https://www.wordreference.com/es/translation.asp?'
     words = []
     parts_speach = ['adj + prep', 'verbal expression', 'vtr + adv','vi + adv','phrasal verb, transitive, inseparable', 'phrasal verb, intransitive, separable', 'phrasal verb, intransitive', 'verb, auxiliary', 'verb copulative', 'verb impersonal', 'verb, intransitive', 'verb, intransitive phrasal',
     'verb, past simple', 'verb, past participle', 'verb, past simple and past participle', 'verb, present participle', 'verb, present tense'
